@@ -1,9 +1,9 @@
 module "vpc" {
   source = "../../modules/vpc"
-  name = "mgmt"
-  cidr_block = "10.0.0.0/16"
+  name = "prod"
+  cidr_block = "10.2.0.0/16"
   tags = {
-    environment = "mgmt"
+    environment = "prod"
     agent = "terraform"
   }
 }
