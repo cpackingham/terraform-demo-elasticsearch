@@ -11,11 +11,11 @@ data "aws_vpc" "mgmt" {
 }
 
 resource "aws_vpc_peering_connection" "mgmt_test" {
-  peer_vpc_id = var.prod_vpc_id
+  peer_vpc_id = var.test_vpc_id
   vpc_id = var.mgmt_vpc_id
   auto_accept = true
 
-  tags = merge(var.tags, {Name = "prod <-> mgmt"})
+  tags = merge(var.tags, {Name = "test <-> mgmt"})
 }
 
 # Connections from mgmt to test
@@ -33,11 +33,11 @@ resource "aws_route" "test_mgmt" {
 }
 
 resource "aws_vpc_peering_connection" "mgmt_prod" {
-  peer_vpc_id = var.test_vpc_id
+  peer_vpc_id = var.prod_vpc_id
   vpc_id = var.mgmt_vpc_id
   auto_accept = true
 
-  tags = merge(var.tags, {Name = "test <-> mgmt"})
+  tags = merge(var.tags, {Name = "prod <-> mgmt"})
 }
 
 # Connections from mgmt to prod
